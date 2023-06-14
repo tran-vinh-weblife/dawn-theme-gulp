@@ -1,0 +1,8 @@
+development:
+  password: shptka_235b47ef23cdfe21a4b9a335609bfd34
+  theme_id: 152337514796
+  store: hardworkeasy.myshopify.com
+  ignore_files:
+  - assets/css/
+  - templates/*.json
+  - assets/src/nvm ls
