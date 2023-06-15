@@ -1,0 +1,150 @@
+@import "./_settings/core.scss";
+
+.buttons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    @media #{$breakpoint-max-small} {
+        flex-wrap: wrap;
+    }
+
+    .button {
+        @media #{$breakpoint-max-small} {
+            width: 100%;
+        }
+    }
+}
+
+.button {
+    font-size: 20px;
+    letter-spacing: 0.02px;
+    line-height: 1;
+    min-width: auto;
+    min-height: auto;
+    padding: 21px 20px 19px;
+    box-sizing: border-box;
+    border: 1px solid;
+    border-radius: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease-in-out;
+
+    @media #{$breakpoint-max-medium} {
+        font-size: 16px;
+    }
+
+    &:before, &:after {
+        content: none;
+    }
+
+
+    &:nth-of-type(2) {
+        margin-left: 20px;
+
+        @media #{$breakpoint-max-small} {
+            margin-left: 0;
+            margin-top: 14px;
+        }
+    }
+
+    &--primary {
+        color: $colour-white;
+        background-color: $colour-primary;
+        border-color: $colour-primary;
+
+        &-solid {
+            color: $colour-primary;
+            background-color: transparent;
+            border-color: $colour-primary;
+
+            &:hover {
+                color: $colour-white;
+                background-color: $colour-primary;
+                border-color: $colour-primary;
+            }
+        }
+
+        &:hover {
+            color: $colour-primary;
+            background-color: transparent;
+            border-color: $colour-primary;
+        }
+    }
+
+    &--secondary {
+        color: $colour-white;
+        background-color: $colour-secondary;
+        border-color: $colour-secondary;
+
+        &-solid {
+            color: $colour-secondary;
+            background-color: transparent;
+            border-color: $colour-secondary;
+
+            &:hover {
+                color: $colour-secondary;
+                background-color: transparent;
+                border-color: $colour-secondary;
+            }
+        }
+
+        &:hover {
+            color: $colour-primary;
+            background-color: $colour-quinary;
+            border-color: $colour-quinary;
+        }
+    }
+
+    &--tertiary {
+        color: $colour-white;
+        background-color: $colour-tertiary;
+        border-color: $colour-tertiary;
+
+        &-solid {
+            color: $colour-white;
+            background-color: transparent;
+        }
+
+        &:hover {
+            color: $colour-tertiary;
+            background-color: transparent;
+            border-color: $colour-tertiary;
+        }
+    }
+
+    &--quaternary {
+        color: $colour-white;
+        background-color: $colour-quaternary;
+        border-color: $colour-quaternary;
+
+        &-solid {
+            color: $colour-white;
+            background-color: transparent;
+        }
+
+        &:hover {
+            color: $colour-quaternary;
+            background-color: transparent;
+            border-color: $colour-quaternary;
+        }
+    }
+
+    &--quinary {
+        color: $colour-primary;
+        background-color: $colour-quinary;
+        border-color: $colour-quinary;
+
+        &-solid {
+            color: $colour-quinary;
+            background-color: $colour-primary;
+        }
+
+        &:hover {
+            color: $colour-quinary;
+            background-color: $colour-secondary;
+            border-color: $colour-secondary;
+        }
+    }
+}

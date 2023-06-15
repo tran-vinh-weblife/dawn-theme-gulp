@@ -1,0 +1,45 @@
+//Colour
+$colour-dark: var(--color-dark);
+$colour-light: var(--color-light);
+
+
+$colour-primary: #331903;
+$colour-secondary: #95020b;
+$colour-tertiary: #a73500;
+$colour-quaternary: #0c2f07;
+$colour-quinary: #ddb27c;
+$colour-senary: #f1f1f1;
+
+$colour-subtitle: $colour-tertiary;
+$colour-title: $colour-primary;
+$colour-rte: $colour-primary;
+
+$colour-white: #fff;
+$colour-black: #000;
+
+$colour-border: #33190333;
+
+
+
+$subtitle-font: 'Satisfy';
+$title-font: 'Libre Baskerville', serif;
+$body-font: 'Libre Baskerville', serif;
+
+// Min Breakpoints
+$breakpoint-smallest: "only screen and (min-width: 28.125em)"; // > 450px
+$breakpoint-small: "only screen and (min-width: 36em)"; // > 576px
+$breakpoint-medium: "only screen and (min-width: 46.875em)"; // > 750px
+$breakpoint-wide: "only screen and (min-width: 64.063em)"; // > 1024px
+$breakpoint-wider: "only screen and (min-width: 81.250em)"; // > 1300px
+$breakpoint-full: "only screen and (min-width: 120em)"; // > 1920px
+
+// Max Breakpoints
+$breakpoint-max-smallest: "only screen and (max-width: 28.063em)"; // < 449px
+$breakpoint-max-small: "only screen and (max-width: 35.99em)"; // < 575px
+$breakpoint-max-medium: "only screen and (max-width: 46.813em)"; // < 750px
+$breakpoint-max-wide: "only screen and (max-width: 64.000em)"; // < 1025px
+$breakpoint-max-wider: "only screen and (max-width: 81.188em)"; // < 1299px
+
+// Breakpoints Font-size
+$breakpoint-fontsize-medium: "only screen and (min-width: 45.000em)"; // > 720px
+$breakpoint-fontsize-wide: "only screen and (min-width: 100.0625em)"; // > 1601px
