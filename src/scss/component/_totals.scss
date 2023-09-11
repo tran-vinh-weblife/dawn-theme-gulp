@@ -1,0 +1,42 @@
+@import "./_settings/core.scss";
+
+.totals {
+	display: flex;
+	justify-content: center;
+	align-items: flex-end;
+
+	@include mq($mq-tab) {
+		justify-content: flex-end;
+	}
+
+	>* {
+		font-size: 1.6rem;
+		margin: 0;
+
+		+ {
+			* {
+				margin-left: 2rem;
+			}
+		}
+	}
+
+	>h2 {
+		font-size: calc(var(--font-heading-scale) * 1.6rem);
+	}
+
+	* {
+		line-height: 1;
+	}
+
+	&__subtotal-value {
+		font-size: 1.8rem;
+	}
+}
+
+.cart__ctas {
+	+ {
+		.totals {
+			margin-top: 2rem;
+		}
+	}
+}

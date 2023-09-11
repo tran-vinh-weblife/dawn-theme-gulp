@@ -1,0 +1,70 @@
+@import "./_settings/core.scss";
+
+.collection-list {
+    margin-top: 0;
+    margin-bottom: 0;
+    @include mq($mq-tab, max) {
+        &:not(.slider) {
+            padding-left: 0;
+            padding-right: 0;
+        }
+    }
+
+    &.slider {
+        &.collection-list {
+            &--1-items,
+            &--2-items,
+            &--3-items,
+            &--4-items {
+                @include mq(($mq-tab, $mq-desk)) {
+                }
+            }
+        }
+        &__item {
+            @include mq($mq-desk, max) {
+                max-width: 100%;
+            }
+        }
+    }
+
+    &-title {
+        margin: 0;
+    }
+
+    &__item {
+        @include mq($mq-tab) {
+            a {
+                &:hover {
+                    box-shadow: none;
+                }
+            }
+        }
+
+        &:only-child {
+            max-width: 100%;
+            width: 100%;
+        }
+    }
+
+    &-view-all {
+        margin-top: 2rem;
+    }
+}
+
+@include mq($mq-tab, max) {
+    .section-collection-list {
+        .page-width {
+            padding-left: 0;
+            padding-right: 0;
+        }
+        .collection-list {
+            &:not(.slider) {
+                padding-left: 1.5rem;
+                padding-right: 1.5rem;
+            }
+        }
+    }
+    .slider.collection-list--1-items {
+        padding-bottom: 0;
+    }
+}

@@ -1,0 +1,80 @@
+@import "./_settings/core.scss";
+
+.featured-product {
+    @include mq($mq-desk) {
+        &:not(.product--no-media) {
+            > .product__info-wrapper {
+                padding: 0 7rem;
+            }
+        }
+    }
+
+    .product__media-list {
+        width: 100%;
+        margin: 0;
+        padding-bottom: 0;
+    }
+
+    .product__media-item {
+        padding-left: 0;
+        width: 100%;
+        @include mq($mq-tab) {
+            padding-bottom: 0;
+        }
+
+        &:not(:first-child) {
+            display: none;
+        }
+    }
+
+    .global-media-settings {
+        &:after {
+            z-index: 0;
+        }
+    }
+
+    .product__modal-opener {
+        margin-bottom: var(--media-shadow-vertical-offset);
+    }
+
+    .share-button {
+        &:nth-last-child(2) {
+            display: inline-flex;
+        }
+    }
+}
+
+.background-secondary {
+    .featured-product {
+        padding: 2.5rem;
+        @include mq($mq-tab) {
+            padding: 5rem;
+        }
+        @include mq($mq-desk) {
+            position: relative;
+            z-index: 1;
+            padding: 6rem 7rem;
+
+            &:not(.product--no-media) {
+                > .product__info-wrapper {
+                    padding: 0 0 0 5rem;
+                }
+            }
+        }
+    }
+}
+
+.share-button {
+    + {
+        .product__view-details {
+            display: inline-flex;
+            float: right;
+            align-items: center;
+            &::after {
+                content: "";
+                clear: both;
+                display: table;
+            }
+        }
+    }
+}

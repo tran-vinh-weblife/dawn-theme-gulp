@@ -1,0 +1,36 @@
+@import "./_settings/core.scss";
+
+.list-menu {
+	&--right {
+		right: 0;
+	}
+
+	&--disclosure {
+		position: absolute;
+		top: calc(100% + 1px);
+		left: 0;
+		width: 100%;
+		max-width: 40rem;
+		height: 100vh;
+
+		&:focus {
+			outline: none;
+		}
+	}
+
+	&__item--active {
+		text-decoration: underline;
+		text-underline-offset: 0.3rem;
+
+		&:hover {
+			text-decoration-thickness: 0.2rem;
+		}
+	}
+
+	&--disclosure.localization-selector {
+		max-height: 18rem;
+		overflow: auto;
+		width: 10rem;
+		padding: 0.5rem;
+	}
+}

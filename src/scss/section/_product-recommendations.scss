@@ -1,0 +1,13 @@
+.product-recommendations {
+    display: block;
+
+    &:not(&--loaded) {
+        padding: 0;
+        margin: 0;
+    }
+
+    &__heading {
+        margin: 0;
+        margin-bottom: 3rem;
+    }
+}

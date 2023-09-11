@@ -1,0 +1,70 @@
+{% if section.blocks.size > 0 %}
+<ul class="shipping-tooltip" style="display: none;">
+    {% for block in section.blocks %}
+    <li data-shipping="{{ block.settings.title }}">{{ block.settings.text_tooltip }}</li>
+    {% endfor %}
+</ul>
+
+<style>
+    .section--shipping-method .radio-wrapper .radio__label {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .section--shipping-method .radio-wrapper .field__icon {
+        width: 5%;
+        position: static;
+    }
+    .display-table .radio__label__accessory {
+        width: 15%;
+    }
+</style>
+{% endif %}
+
+<script>
+    (function($) {
+        $(document).on("page:load", function() {
+            $('.shipping-tooltip li').each(function() {
+                var getId = $(this).data('shipping');
+                var text_tooltip = $(this).text();
+                $('.radio__label__primary').each(function() {
+                    var htmlTooltip = '<div class="field__icon">'
+                                    +    '<div class="tooltip-container">'
+                                    +    '<button type="button" class="tooltip-control">'
+                                    +        '<svg class="icon-svg icon-svg--color-adaptive-lighter icon-svg--size-16 icon-svg--block icon-svg--center" role="presentation" aria-hidden="true" focusable="false"> <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M8 0C3.6 0 0 3.6 0 8s3.6 8 8 8 8-3.6 8-8-3.6-8-8-8zm.7 13H6.8v-2h1.9v2zm2.6-7.1c0 1.8-1.3 2.6-2.8 2.8l-.1 1.1H7.3L7 7.5l.1-.1c1.8-.1 2.6-.6 2.6-1.6 0-.8-.6-1.3-1.6-1.3-.9 0-1.6.4-2.3 1.1L4.7 4.5c.8-.9 1.9-1.6 3.4-1.6 1.9.1 3.2 1.2 3.2 3z"></path></svg> </svg>'
+                                    +    '</button>'
+                                    +    '<span class="tooltip">'+text_tooltip+'</span>'
+                                    +    '</div>'
+                                    + '</div>';
+                    if($(this).data('shipping-method-label-title') == getId){
+                        $(this).parent().find('.field__icon').remove();
+                        $(this).addClass('field__input-wrapper--icon-right').after(htmlTooltip);
+                    }
+                });
+            });
+        });
+    })(Checkout.$);
+</script>
+
+{% schema %}
+    {
+        "name": "t:sections.checkout_shipping_tooltip.name",
+        "blocks": [{
+            "type": "Text",
+            "name": "Text", 
+            "name": "t:sections.checkout_shipping_tooltip.blocks.text.name",
+            "settings":[
+                {
+                    "type": "text",
+                    "id": "title",
+                    "label": "t:sections.checkout_shipping_tooltip.blocks.text.settings.data_shipping.label"
+                },
+                {
+                    "type": "textarea",
+                    "id": "text_tooltip",
+                    "label": "t:sections.checkout_shipping_tooltip.blocks.text.settings.text_tooltip.label"
+                }
+            ]
+        }]
+    }
+{% endschema %}

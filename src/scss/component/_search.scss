@@ -1,0 +1,40 @@
+/* Remove extra spacing for search inputs in Safari */
+@import "./_settings/core.scss";
+
+.search {
+	&__input.field__input {
+		padding-right: 5rem;
+	}
+
+	&__button {
+		left: var(--inputs-border-width);
+		top: var(--inputs-border-width);
+
+		&:focus-visible {
+			background-color: rgba(var(--color-background), 1);
+			z-index: 2;
+		}
+
+		&:focus {
+			background-color: rgba(var(--color-background), 1);
+			z-index: 2;
+		}
+
+		&:not(:focus-visible) {
+			&:not(.focused) {
+				box-shadow: inherit;
+				background-color: inherit;
+			}
+		}
+		.icon {
+			height: 1.8rem;
+			width: 1.8rem;
+		}
+	}
+
+}
+input {
+	&::-webkit-search-decoration {
+		-webkit-appearance: none;
+	}
+}

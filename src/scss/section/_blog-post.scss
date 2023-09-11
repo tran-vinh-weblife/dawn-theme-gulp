@@ -1,0 +1,147 @@
+@import "./_settings/core.scss";
+
+
+.article-template {
+    $self: &;
+
+    > * {
+        &:first-child {
+            &:not(#{$self}__hero-container) {
+                margin-top: 5rem;
+                @include mq($mq-tab) {
+                    margin-top: calc(5rem + var(--page-width-margin));
+                }
+            }
+        }
+    }
+
+    header {
+        margin-top: 4.4rem;
+        margin-bottom: 2rem;
+        line-height: calc(0.8 / var(--font-body-scale));
+        @include mq($mq-tab) {
+            margin-top: 5rem;
+        }
+    }
+
+    &__hero-container {
+        max-width: 130rem;
+        margin: 0 auto;
+    }
+    &__hero-small {
+        height: 11rem;
+        @include mq(($mq-tab, $mq-desk)) {
+            height: 22rem;
+        }
+        @include mq($mq-desk) {
+            height: 27.5rem;
+        }
+    }
+    &__hero-medium {
+        height: 22rem;
+        @include mq(($mq-tab, $mq-desk)) {
+            height: 44rem;
+        }
+        @include mq($mq-desk) {
+            height: 55rem;
+        }
+    }
+    &__hero-large {
+        height: 33rem;
+        @include mq(($mq-tab, $mq-desk)) {
+            height: 66rem;
+        }
+        @include mq($mq-desk) {
+            height: 82.5rem;
+        }
+    }
+    &__title {
+        margin: 0;
+        &:not(:only-child) {
+            margin-bottom: 1rem;
+        }
+    }
+    &__link {
+        font-size: 1.8rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-decoration: none;
+        .icon-wrap {
+            display: flex;
+            margin-right: 1rem;
+            transform: rotate(180deg);
+        }
+    }
+    &__content {
+        margin-top: 3rem;
+        margin-bottom: 3rem;
+    }
+    &__social-sharing {
+        margin-top: 3rem;
+        + {
+            header {
+                margin-top: 1.5rem;
+            }
+            #{$self}__content {
+                margin-top: 1.5rem;
+            }
+        }
+    }
+    &__comment-wrapper {
+        margin-top: 5rem;
+        padding: 2.7rem 0;
+        @include mq($mq-tab) {
+            margin-top: 6rem;
+            padding: 3.6rem 0;
+        }
+        h2 {
+            margin-top: 0;
+        }
+    }
+    &__comments {
+        margin-bottom: 5rem;
+        @include mq($mq-tab) {
+            margin-bottom: 7rem;
+        }
+        @include mq($mq-desk) {
+            .pagination-wrapper {
+                margin: 5rem 0 8rem;
+            }
+        }
+    }
+    &__comments-fields {
+        margin-bottom: 4rem;
+    }
+    &__comments-comment {
+        color: rgba(var(--color-foreground), 0.75);
+        background-color: rgba(var(--color-background), 1);
+        margin-bottom: 1.5rem;
+        padding: 2rem 2rem 1.5rem;
+        @include mq($mq-tab) {
+            padding: 2rem 2.5rem;
+        }
+        p {
+            margin: 0 0 1rem;
+        }
+    }
+    &__comment-fields {
+        @include mq($mq-tab) {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            grid-column-gap: 4rem;
+        }
+
+        > * {
+            margin-bottom: 3rem;
+        }
+    }
+    &__comment-warning {
+        margin: 2rem 0 2.5rem;
+    }
+    &__back {
+        &:last-child {
+            margin-bottom: 3.2rem;
+        }
+    }
+}

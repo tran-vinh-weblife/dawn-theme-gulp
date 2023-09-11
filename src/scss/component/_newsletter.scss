@@ -1,0 +1,72 @@
+@import "./_settings/core.scss";
+
+
+.newsletter-form {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	position: relative;
+
+	@include mq($mq-tab) {
+		align-items: flex-start;
+		max-width: 36rem;
+		margin: 0 auto;
+
+		&__message {
+			justify-content: flex-start;
+		}
+	}
+
+	&__field-wrapper {
+		width: 100%;
+
+		.field__input {
+			padding-right: 5rem;
+		}
+
+		.field {
+			z-index: 0;
+		}
+	}
+
+	&__message {
+		justify-content: center;
+		margin-bottom: 0;
+
+		&--success {
+			margin-top: 2rem;
+		}
+	}
+
+	&__button {
+		width: 4.4rem;
+		margin: 0;
+		right: var(--inputs-border-width);
+		top: 0;
+		height: 100%;
+		z-index: 2;
+
+		&:focus-visible {
+			box-shadow: 0 0 0 .3rem rgba(var(--color-background), 1), 0 0 0 .4rem rgba(var(--color-foreground), 1);
+			background-color: rgba(var(--color-background), 1);
+		}
+
+		&:focus {
+			box-shadow: 0 0 0 .3rem rgba(var(--color-background), 1), 0 0 0 .4rem rgba(var(--color-foreground), 1);
+			background-color: rgba(var(--color-background), 1);
+		}
+
+		&:not(:focus-visible) {
+			&:not(.focused) {
+				box-shadow: inherit;
+				background-color: inherit;
+			}
+		}
+
+		.icon {
+			width: 1.5rem;
+		}
+	}
+}

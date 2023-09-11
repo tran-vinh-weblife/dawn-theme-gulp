@@ -1,0 +1,22 @@
+@import "./_settings/core.scss";
+
+.main-page-title {
+    margin-bottom: 3rem;
+    @include mq($mq-tab) {
+        margin-bottom: 4rem;
+    }
+}
+
+.page {
+    &-title {
+        margin-top: 0;
+    }
+    &-placeholder {
+        width: 52.5rem;
+        height: 52.5rem;
+    }
+    &-placeholder-wrapper {
+        display: flex;
+        justify-content: center;
+    }
+}

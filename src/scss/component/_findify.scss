@@ -1,0 +1,52 @@
+.findify {
+    $self: &;
+
+    &-components {
+        &--cards--product {
+            &:hover {
+                #{$self}-add-to-cart {
+                    z-index: 2;
+                }
+            }
+        }
+
+        &--checkbox-facet__input {
+            background: #fff;
+        }
+
+        &--range-facet__input {
+            background: #fff;
+
+            &-wrap {
+                background: #fff;
+            }
+        }
+
+        &-common {
+            &--sticky__sticky {
+                &::-webkit-scrollbar {
+                    width: 0;
+                }
+            }
+        }
+
+        &-search {
+            &--mobile-actions {
+                position: static;
+            }
+        }
+    }
+
+    &-add-to-cart {
+        button {
+            &,
+            &:active,
+            &:hover {
+                color: #11384a;
+                background-color: #fff;
+                border-radius: 4px;
+                cursor: pointer;
+            }
+        }
+    }
+}

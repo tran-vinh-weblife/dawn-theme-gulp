@@ -1,0 +1,203 @@
+/* check for flexbox gap in older Safari versions */
+@import "./_settings/core.scss";
+
+.article {
+    display: flex;
+    align-items: center;
+
+    &.grid__item {
+        padding: 0;
+    }
+
+    @include mq($mq-tab) {
+        &-wrapper.grid {
+            margin-bottom: 7rem;
+        }
+    }
+    @include mq($mq-desk, max) {
+        &-wrapper {
+            .article {
+                width: 100%;
+            }
+        }
+    }
+    &-card {
+        .card {
+            &__heading {
+                margin-bottom: 0.6rem;
+            }
+        }
+
+        &__title {
+            text-decoration: none;
+            word-break: break-word;
+
+            a {
+                &:after {
+                    bottom: 0;
+                    content: "";
+                    height: 100%;
+                    left: 0;
+                    position: absolute;
+                    right: 0;
+                    top: 0;
+                    width: 100%;
+                    z-index: 1;
+                }
+            }
+        }
+
+        &__link.link {
+            padding: 0;
+        }
+
+        &__link {
+            text-underline-offset: 0.3rem;
+
+            &:not(:only-child) {
+                margin-right: 3rem;
+            }
+
+            @media screen and (min-width: 990px) {
+                &:not(:only-child) {
+                    margin-right: 4rem;
+                }
+            }
+        }
+
+        &__info {
+            padding-top: 0.4rem;
+        }
+
+        &__footer {
+            letter-spacing: 0.1rem;
+            font-size: 1.4rem;
+
+            &:not(:last-child) {
+                margin-bottom: 1rem;
+            }
+
+            &:last-child {
+                margin-top: auto;
+            }
+        }
+
+        &__excerpt {
+            width: 100%;
+            margin-top: 1.2rem;
+        }
+
+        &__image {
+            &-wrapper {
+                > a {
+                    display: block;
+                }
+            }
+
+            &--small {
+                .ratio {
+                    &::before {
+                        padding-bottom: 11rem;
+                    }
+                }
+            }
+
+            &--medium {
+                .ratio {
+                    &::before {
+                        padding-bottom: 22rem;
+                    }
+                }
+            }
+
+            &--large {
+                .ratio {
+                    &::before {
+                        padding-bottom: 33rem;
+                    }
+                }
+            }
+
+            @media screen and (min-width: 990px) {
+                &--small {
+                    .ratio {
+                        &::before {
+                            padding-bottom: 17.7rem;
+                        }
+                    }
+                }
+
+                &--medium {
+                    .ratio {
+                        &::before {
+                            padding-bottom: 30.7rem;
+                        }
+                    }
+                }
+
+                &--large {
+                    .ratio {
+                        &::before {
+                            padding-bottom: 40.7rem;
+                        }
+                    }
+                }
+            }
+
+            @include mq($mq-tab) {
+                &--small {
+                    .ratio {
+                        &::before {
+                            padding-bottom: 14.3rem;
+                        }
+                    }
+                }
+
+                &--medium {
+                    .ratio {
+                        &::before {
+                            padding-bottom: 21.9rem;
+                        }
+                    }
+                }
+
+                &--large {
+                    .ratio {
+                        &::before {
+                            padding-bottom: 27.5rem;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+.grid--peek {
+    .article-card {
+        box-sizing: border-box;
+    }
+}
+
+.blog {
+    &-articles,
+    &__posts {
+        .article-card {
+            .card__information {
+                padding-left: 2rem;
+                padding-right: 2rem;
+            }
+        }
+    }
+}
+
+// @supports {
+// 	not {
+// 		(inset: {
+// 				10px) {
+// 				.articles-wrapper.grid {
+// 					margin: 0 0 5rem 0;
+// 				}
+// 			}
+// 		}
+// 	}

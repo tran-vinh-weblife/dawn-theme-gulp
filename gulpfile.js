@@ -5,7 +5,6 @@ const {
     parallel,
     watch
 } = require("gulp");
-const gulp = require('gulp');
 const concat = require("gulp-concat");
 const jshint = require("gulp-jshint");
 const plumber = require("gulp-plumber");
@@ -17,7 +16,7 @@ const browserSync = require('browser-sync').create();
 const babel = require("gulp-babel");
 
 function scss() {
-    return gulp.src(['./src/scss/**/*.scss', '!./src/scss/_*/**'])
+    return src(['./src/scss/**/*.scss', '!./src/scss/_*/**'])
         .pipe(plumber())
         .pipe(rename(function (path) {
             if (path.basename.startsWith('_')) {
@@ -29,21 +28,38 @@ function scss() {
             // dirname
             path.dirname = './'
         }))
-        .pipe(sass({outputStyle: "expanded"}))
-        .pipe(gulp.dest("./assets"))
+        .pipe(sass({
+            outputStyle: "expanded"
+        }))
+        .pipe(sass().on("error", sass.logError))
+        .pipe(dest("./assets"))
+        .pipe(browserSync.stream());
 }
 
 function minifyCss() {
-    return gulp.src("./assets/*.css")
+    return src("./assets/*.css")
         .pipe(cleancss({
             compatibility: "ie8"
         }))
-        .pipe(gulp.dest("./assets"));
+        .pipe(dest("./assets"));
+}
+
+
+function initBrowserSync() {
+    browserSync.init({
+        server: {
+            baseDir: "./",
+        },
+    });
+
+    const reload = browserSync.reload;
+    watch("./src/**/*.scss", scss).on('change', reload);
 }
 
 //==== Define complex task ======
 //const js = series(compileJs);
-const css = gulp.series(scss);
+const css = series(scss, minifyCss);
+
 function watchFiles() {
     watch('src/scss/**/*', scss);
 }
@@ -53,7 +69,6 @@ const watchBrowser = series(
     series(parallel(css, watchFiles))
     //initBrowserSync,
 );
-
 
 // Export file
 exports.watch = watchBrowser;

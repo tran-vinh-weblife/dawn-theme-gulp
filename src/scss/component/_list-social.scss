@@ -1,0 +1,31 @@
+@import "./_settings/core.scss";
+
+.list-social {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: flex-end;
+
+	@include mq($mq-tab, max) {
+		justify-content: center;
+	}
+
+	&__item {
+		.icon {
+			height: 1.8rem;
+			width: 1.8rem;
+		}
+	}
+
+	&__link {
+		align-items: center;
+		display: flex;
+		padding: 1.3rem;
+		color: rgba(var(--color-foreground), 1);
+
+		&:hover {
+			.icon {
+				transform: scale(1.07);
+			}
+		}
+	}
+}

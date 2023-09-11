@@ -1,0 +1,60 @@
+@import "./_settings/core.scss";
+
+.product__xr-button {
+    background: rgba(var(--color-foreground), 0.08);
+    color: rgba(var(--color-foreground), 1);
+    margin: 1rem auto;
+    box-shadow: none;
+    display: flex;
+
+    .icon {
+        width: 1.4rem;
+        margin-right: 1rem;
+    }
+
+    &-button {
+        &:hover {
+            box-shadow: none;
+        }
+
+        &[data-shopify-xr-hidden] {
+            visibility: hidden;
+
+            @include mq($mq-tab) {
+                display: none;
+            }
+        }
+    }
+}
+
+.shopify-design-mode {
+    .product__xr-button[data-shopify-xr-hidden] {
+        display: none;
+    }
+}
+
+@include mq($mq-tab, max) {
+    slider-component {
+        .product__xr-button {
+            display: none;
+        }
+    }
+
+    .active {
+        .product__xr-button {
+            &:not([data-shopify-xr-hidden]) {
+                display: block;
+            }
+        }
+    }
+}
+
+@include mq($mq-tab) {
+    slider-component {
+        + {
+            .button.product__xr-button {
+                display: none;
+            }
+        }
+    }
+}

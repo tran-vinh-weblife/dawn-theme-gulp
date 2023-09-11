@@ -1,0 +1,18 @@
+<script>
+    window.theme = window.theme || {};
+
+    theme.strings = {
+      inStockLabel: {{ 'products.product.in_stock_label' | t | json }},
+      stockLabel: {{ 'products.product.stock_label.other_html' | t: count: '[count]' | json }},
+      stockLabelMore20: {{ 'products.product.stock_label.more20_html' | t | json }},
+      stockLabelMore50: {{ 'products.product.stock_label.more50_html' | t | json }},
+      stockLabelMore100: {{ 'products.product.stock_label.more100_html' | t | json }},
+      stockLabelBackOrder: {{ 'products.product.stock_label.back_order_html' | t | json }},
+      stockLabelMadeToOrder: {{ 'products.product.stock_label.made_to_order_html' | t: count: '[count]' | json }},
+      deliveryTime: {{ 'products.product.delivery_time_html' | t: time: '[time]' | json }}
+    };
+
+    theme.settings = {
+      inventoryThreshold: 10
+    };
+</script>

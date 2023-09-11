@@ -1,0 +1,142 @@
+{%- comment -%}
+
+	Required Parameters:
+		+ Level
+		+ Links
+		+ Title
+
+{%- endcomment -%}
+
+{% if level == 0 %}
+	{{ "component-header-menu.css"  | asset_url | stylesheet_tag }}
+	<script src="{{ 'header-menu.js' | asset_url }}" defer="defer"></script> 
+{% endif %}
+
+
+{%- liquid 
+
+	assign is_menu_details = false
+	
+	if level == 1 or level == 2
+		assign is_menu_details = true
+	endif 
+
+
+	assign wrap_list_class = "mega-menu__list--wrap mega-menu__list--lv0"
+	assign li_class = "mega-menu__item--lv0"
+	assign a_class = "mega-menu__link--lv0"
+
+	if level != 0
+
+		assign nav_class = "mega-menu"
+		assign wrap_list_class = ""
+		assign ul_class = "mega-menu__list--col"
+		assign li_class = ""
+		assign a_class = "mega-menu__link--sub-lv"
+
+	endif
+-%}
+
+<nav class="{{ nav_class }} mega-menu--lv{{ level }} js-menu-lv{{ level }}">
+		{% if level != 0 and sub_title != "" %}
+			<div class="mega-menu__head">
+				{%- if level != 1 -%}
+					<button class="mega-menu__head-back js-submenu-back">
+						{% render 'icon-arrow-back' %}
+					</button>
+				{%- endif -%}
+				{%- if all_link != blank -%}
+					<span class="mega-menu__head-name">{{ sub_title }}</span>
+					<a href="{{ all_link }}" class="mega-menu__head-view-all">{{ 'sections.collection_list.view_all' | t }}</a>
+				{% else %}
+					<span class="mega-menu__head-name">{{ sub_title }}</span>
+				{%- endif -%}
+			</div> 
+		{% endif %}
+
+		{% if links.size > 0 %}
+			<ul class="mega-menu__list {{ wrap_list_class }} {{ ul_class }} js-mega-list">
+				{%- for link in links -%}
+
+					{%- liquid
+
+						assign no_icon_class = ""
+						assign jsLinkClass = ""
+						
+						if link.links != blank
+							assign jsLinkClass = "js-mega-menu-link-lv" | append: level
+						else
+							assign no_icon_class = "mega-menu__link--no-icon"
+						endif
+						
+						assign link_title = link.title
+						assign link_title_image = 'static-product.png' | asset_img_url: 'small'
+						assign hight_light_class =  ''
+
+						if link_title contains '*' and level == 0
+							assign hight_light_class =  'mega-menu__item--highlight'
+						endif
+
+						if link_title contains '|'
+							assign array_info = link.title | split: '|'
+							assign link_title = array_info | first | strip
+							assign link_title_image = array_info | last | replace: '*', '' | strip | file_img_url
+						else 
+							if link.type == 'collection_link'
+								assign collection = link.object
+							endif
+
+							if collection.image != blank
+								assign link_title_image = collection.image | image_url: width: 480, height: 480
+							endif
+						endif
+					-%}
+
+					<li class="mega-menu__item {{ hight_light_class }} {{ li_class }}">
+
+						<a 
+							href="{{ link.url }}" 
+							data-index="{{ forloop.index }}"
+							class="mega-menu__link {{ a_class }} {{ jsLinkClass }}">
+
+							{%- if level != 0 -%}
+								<div class="mega-menu__link-icon">
+									<picture>
+										<img src="{{ link_title_image }}" height="48" width="48" alt="{{ link_title | escape }}">
+									</picture>
+								</div>
+							{%- endif -%}
+
+							<span>{{ link_title }}</span>
+
+							{%- if is_menu_details and link.links != blank -%}
+								<span class="mega-menu__link-arrow">
+									{% render 'icon-chervon-right' %}
+								</span>
+							{%- endif -%}
+
+						</a>
+
+
+						{%-liquid						
+
+							assign levelValue = level
+							assign nextLevel = levelValue | plus: 1
+							assign isRenderNext = false
+
+							if nextLevel > 1 and nextLevel < 4
+								assign isRenderNext = true
+							endif
+
+						-%}
+
+						{%- if isRenderNext and link.links != blank -%} 
+							{% render 'mega-menu', level: nextLevel, links: link.links, sub_title: link_title, all_link: link.url %} 
+						{%- endif -%}
+
+					</li>
+
+				{%- endfor -%}
+			</ul>
+		{% endif %}
+</nav>

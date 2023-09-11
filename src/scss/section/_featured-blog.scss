@@ -1,0 +1,82 @@
+/* check for flexbox gap in older Safari versions */
+@import "./_settings/core.scss";
+
+.blog-placeholder {
+    margin: 0 1.5rem;
+    background: rgba(var(--color-background), 1);
+    @include mq($mq-tab) {
+        text-align: center;
+        width: 50%;
+        margin: 0;
+    }
+    .placeholder {
+        position: relative;
+    }
+    h2 {
+        margin: 0;
+    }
+    .rte-width {
+        margin-top: 1.2rem;
+        color: rgba(var(--color-foreground), 0.75);
+    }
+
+    &__content {
+        padding: 3rem;
+        background: rgba(var(--color-foreground), 0.04);
+    }
+}
+
+.blog__title {
+    margin: 0;
+}
+.blog__posts.articles-wrapper {
+    margin-bottom: 1rem;
+    .article {
+        scroll-snap-align: start;
+    }
+}
+.background-secondary {
+    .blog-placeholder__content {
+        background-color: rgba(var(--color-background), 1);
+    }
+}
+.blog__posts {
+    .card-wrapper {
+        width: 100%;
+    }
+}
+.blog__button {
+    margin-top: 3rem;
+}
+/* check for flexbox gap in older Safari versions */
+@supports not (inset: 10px) {
+    @include mq($mq-tab) {
+        .blog__posts .article + .article {
+            margin-left: var(--grid-desktop-horizontal-spacing);
+        }
+    }
+}
+
+@include mq($mq-tab, max) {
+    .blog__post.article {
+        width: calc(100% - 3rem);
+    }
+}
+
+@include mq($mq-tab) {
+    .blog__button {
+        margin-top: 5rem;
+    }
+}
+@include mq($mq-desk) {
+    .grid--1-col-desktop {
+        .article-card {
+            .card__content {
+                text-align: center;
+            }
+        }
+    }
+    .blog__posts.articles-wrapper {
+        margin-bottom: 0;
+    }
+}

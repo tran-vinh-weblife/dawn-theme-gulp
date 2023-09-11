@@ -1,0 +1,96 @@
+{% if section.settings.content_popup != blank %}
+<div class="checkout-term__popup">
+    <div class="checkout-term__popup--inner">
+        <span class="checkout-term__popup--close-button js-button-popup-close">X</span>
+        <div class="checkout-term__popup--content">
+            <h2 class="checkout-term__popup--title">{{ section.settings.title_popup }}</h2>
+            <div class="checkout-term__popup--text">
+                {{ section.settings.content_popup }}
+            </div>
+        </div>
+    </div>
+</div>
+{% endif %}
+
+<script>
+    (function($) {
+        $(document).on("page:load", function() {
+            let htmlPaymentTerms = `<div class="section checkout-term">`
+                                    + `<div class="section__header">`
+                                    + `<h2 class="section__title">Salgsvilkår</h2>`
+                                    + `</div>`
+                                    + `<div class="content-box">`
+                                        + `<div class="content-box__row">`
+                                            + `<div class="checkbox__input"><input class="input-checkbox" data-backup="checkout_payment_terms" type="checkbox" value="1" name="checkout[checkout_payment_terms]" id="checkout_payment_terms"></div>`
+                                            + `<label class="checkbox__label" for="checkout_payment_terms">{{ section.settings.check_box_label }} <a href="#" class="js-button-payment-term">{{ section.settings.check_box_label_popup }}</a></label>`
+                                        + `</div>`
+                                    + `</div>`
+                                    + `<p class="checkout-term__notice">{{ section.settings.notice }}</p>`
+                                + `</div>`;
+            let form = $('.section.section--billing-address').parent('form.edit_checkout');
+            $('form.edit_checkout .section.section--billing-address').after(htmlPaymentTerms);
+            $('button[type=submit]', form).on('click', function(e) {
+                if(!$('#checkout_payment_terms').is(':checked')){
+                    e.preventDefault();
+                    $('.checkout-term').addClass('checkout-term__error');
+                } else {
+                    $('.checkout-term').removeClass('checkout-term__error');
+                }
+            });
+
+            $('.js-button-payment-term').on('click', function(e){
+                e.preventDefault(); 
+                $('.checkout-term__popup').addClass('checkout-term__popup-active');
+                $('html').addClass('js-popup');
+            })
+
+            $(document).on('click', function(e){
+                let $target = $(event.target);
+                if($target.hasClass('js-button-popup-close') || $target.hasClass('js-popup')) {
+                    e.preventDefault();
+                    $('.checkout-term__popup').removeClass('checkout-term__popup-active');
+                    $('html').removeClass('js-popup');
+                }
+            })
+        });
+    })(Checkout.$);
+</script>
+
+{% schema %}
+    {
+        "name": "Checkout Terms Popup",
+        "name": "t:sections.checkout_terms_popup.name",
+        "settings": [
+            {
+                "type": "text",
+                "id": "title_popup",
+                "label": "t:sections.checkout_terms_popup.settings.title_popup.label",
+                "default": "Vilkår for bruk"
+            },
+            {
+                "type": "richtext",
+                "id": "content_popup",
+                "label": "t:sections.checkout_terms_popup.settings.content_popup.label",
+                "default": "<p>Innledning Dette kjøpet er regulert av de nedens...</p>"
+            },
+            {
+                "type": "text",
+                "id": "check_box_label",
+                "label": "t:sections.checkout_terms_popup.settings.check_box_label.label",
+                "default": "Jeg godtar"
+            },
+            {
+                "type": "text",
+                "id": "check_box_label_popup",
+                "label": "t:sections.checkout_terms_popup.settings.check_box_label_popup.label",
+                "default": "vilkårene"
+            },
+            {
+                "type": "text",
+                "id": "notice",
+                "label": "t:sections.checkout_terms_popup.settings.notice.label",
+                "default": "Vennligst godta vilkårene"
+            }
+        ]
+    }
+{% endschema %}

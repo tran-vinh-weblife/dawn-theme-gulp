@@ -1,0 +1,299 @@
+@import "./_settings/core.scss";
+
+.mega-menu {
+    $self: &;
+    @include mq($mq-desk) {
+        border-right: 1px solid #f8f8f8;
+        border-bottom: 1px solid #f8f8f8;
+    }
+
+    &__top {
+        display: none;
+
+        @include mq($mq-desk) {
+            display: block;
+        }
+    }
+
+    &--lv0 {
+        margin: 0 auto;
+    }
+
+    &--lv1,
+    &--lv2,
+    &--lv3 {
+        position: absolute;
+        height: 100vh;
+        background-color: #fff;
+        pointer-events: none;
+        transition: opacity 0.2s ease;
+
+        &.is-open {
+            pointer-events: auto;
+        }
+    }
+
+    &--lv2,
+    &--lv3 {
+        left: -100%;
+        top: 0;
+        width: 100%;
+
+        @include mq($mq-desk) {
+            left: calc(100% + 1px);
+            visibility: hidden;
+            pointer-events: none;
+        }
+
+        &.is-open {
+            visibility: visible;
+            pointer-events: auto;
+
+            @include mq($mq-desk, max) {
+                left: 0;
+            }
+        }
+    }
+
+    &--lv1 {
+        width: 100vw;
+        max-width: 40rem;
+        top: 100%;
+        left: 0;
+        visibility: hidden;
+        overflow-x: hidden;
+
+        @include mq($mq-desk) {
+            overflow-x: visible;
+        }
+
+        @include mq(($mq-desk, $mq-desk-med)) {
+            max-width: 33.333%;
+        }
+
+        @include mq($mq-desk-med) {
+            max-width: 40rem;
+            padding-left: 6rem;
+        }
+
+        &.is-open {
+            visibility: visible;
+        }
+    }
+
+    &--lv2 {
+        @include mq($mq-desk-med) {
+            width: calc(100% - 6rem);
+        }
+    }
+
+    &__item {
+        &--lv0 {
+            @include mq($mq-desk) {
+                padding: {
+                    top: 1.5rem;
+                    bottom: 1.5rem;
+                }
+            }
+        }
+
+        &:not(&--highlight) + &--highlight {
+            position: relative;
+            padding-left: 2rem;
+
+            &::before {
+                content: "";
+                position: absolute;
+                top: 50%;
+                left: 1rem;
+                transform: translate(-50%, -50%);
+                width: 0.7rem;
+                height: 0.7rem;
+                background-color: #fff;
+                border-radius: 50%;
+                pointer-events: none;
+            }
+        }
+
+        &--highlight {
+            #{$self}__link {
+                color: #c09f46;
+            }
+        }
+    }
+
+    &__list {
+        display: flex;
+        overflow-y: auto;
+
+        &::-webkit-scrollbar {
+            width: 3px;
+        }
+
+        &--lv0 {
+            margin: {
+                left: -1rem;
+                right: -1rem;
+            }
+        }
+
+        &--wrap {
+            flex-wrap: wrap;
+        }
+
+        &--col {
+            flex-direction: column;
+            overflow-y: auto;
+            max-height: calc(100vh - 10rem);
+            transition: height 0.2s ease;
+            padding: {
+                right: 1.6rem;
+                left: 1.6rem;
+            }
+
+            @include mq($mq-desk) {
+                max-height: calc(100vh - 30rem);
+            }
+
+            &.is-fixed {
+                @include mq($mq-desk) {
+                    max-height: calc(100vh - 23rem);
+                }
+            }
+
+            /* width */
+            &::-webkit-scrollbar {
+                width: 1px;
+                border-radius: 4px;
+            }
+
+            /* Track */
+            &::-webkit-scrollbar-track {
+                background: #f1f1f1;
+                border-radius: 4px;
+            }
+
+            /* Handle */
+            &::-webkit-scrollbar-thumb {
+                background: #103a4c;
+            }
+        }
+    }
+
+    &__head {
+        display: flex;
+        align-items: center;
+        padding: 1.6rem;
+        margin-bottom: 0.4rem;
+        border-bottom: 1px solid #f8f8f8;
+        color: #181818;
+        line-height: 1.38;
+        font-weight: 600;
+
+        &-back {
+            padding: 0.2rem;
+            background-color: transparent;
+            cursor: pointer;
+
+            @include mq($mq-desk) {
+                display: none;
+            }
+        }
+
+        &-name {
+            color: #181818;
+        }
+
+        &-view-all {
+            margin-left: auto;
+            color: #181818;
+            text-decoration: underline;
+            text-underline-offset: 3px;
+            &:hover {
+                text-decoration: none;
+            }
+        }
+
+        &-link {
+            margin-left: auto;
+            color: #103a4c;
+            text-decoration: underline;
+            text-underline-offset: 0.3rem;
+        }
+    }
+
+    &__link {
+        display: inline-block;
+        line-height: 1.6;
+
+        &--lv0 {
+            padding: 1.6rem 0.6rem;
+            @include font-size(14);
+            color: #fff;
+
+            @include mq($mq-desk) {
+                padding: 1.2rem 0.6rem;
+                border-radius: 5px;
+                line-height: 1;
+            }
+
+            @include mq($mq-desk-med) {
+                padding: 1.2rem;
+                @include font-size(16);
+            }
+
+            &:hover {
+                opacity: 0.8;
+                background-color: #021d29;
+            }
+        }
+
+        &--sub-lv {
+            display: flex;
+            align-items: center;
+            padding: 0.8rem;
+            margin: {
+                top: 0.4rem;
+                bottom: 0.4rem;
+            }
+            border-radius: 5px;
+            background-color: #f8f8f8;
+            color: #181818;
+        }
+
+        &--no-icon {
+            padding: {
+                top: 2rem;
+                bottom: 2rem;
+            }
+        }
+
+        &.active {
+            background-color: #e6edf0;
+        }
+
+        &-icon {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 4rem;
+            width: 4rem;
+            margin-right: 2.4rem;
+            pointer-events: none;
+            font-size: 0;
+
+            img {
+                width: 100%;
+                max-width: 100%;
+                height: auto;
+            }
+        }
+
+        &-arrow {
+            display: flex;
+            align-items: center;
+            margin-left: auto;
+            pointer-events: none;
+        }
+    }
+}

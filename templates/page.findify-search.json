@@ -1,0 +1,15 @@
+{
+    "wrapper": "section.findify-search-page",
+    "sections": {
+      "main": {
+        "type": "main-page-findify",
+        "settings": {
+          "padding_top": 28,
+          "padding_bottom": 28
+        }
+      }
+    },
+    "order": [
+      "main"
+    ]
+  }

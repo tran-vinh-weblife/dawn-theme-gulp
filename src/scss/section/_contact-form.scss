@@ -1,0 +1,37 @@
+@import "./_settings/core.scss";
+
+.contact {
+    img {
+        max-width: 100%;
+    }
+
+    .form__message {
+        align-items: flex-start;
+    }
+
+    .icon-success {
+        margin-top: 0.2rem;
+    }
+
+    &__fields {
+        @include mq($mq-tab) {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            grid-column-gap: 2rem;
+        }
+    }
+
+    .field {
+        margin-bottom: 1.5rem;
+        @include mq($mq-tab) {
+            margin-bottom: 2rem;
+        }
+    }
+
+    &__button {
+        margin-top: 3rem;
+        @include mq($mq-tab) {
+            margin-top: 4rem;
+        }
+    }
+}
